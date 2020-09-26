@@ -6,11 +6,22 @@ import 'apiKey.dart';
 //   print(Value);
 // }
 
-Future<String> getHttp() async {
-  String pin = "V0";
+Future<String> getHttp(int bangunan,String pin) async {
+  // String pin = "V0";
   String base = "http://blynk-cloud.com/";
   String path = "/get/" + pin;
-  String token = getApiKey().sinyal1;
+  String token = "";
+
+  if (bangunan == 1) {
+    token = getApiKey().sinyal1;
+  } else if (bangunan == 2) {
+    token = getApiKey().sinyal2;
+  } else if (bangunan == 3) {
+    token = getApiKey().sinyal3;
+  } else if (bangunan == 4) {
+    token = getApiKey().sinyal4;
+  }
+  // String token = getApiKey().sinyal1;
 
   String responValue;
 
@@ -22,7 +33,7 @@ Future<String> getHttp() async {
     responValue = double.tryParse(responValue).toStringAsFixed(1).toString();
     return responValue;
   } catch (e) {
-    print(e);
+    // print(e);
     return "0";
   }
 }
